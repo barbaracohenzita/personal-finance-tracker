@@ -9,6 +9,8 @@ const BudgetUpdate = () => {
   const [amount, setAmount] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
     const fetchBudget = async () => {
@@ -21,6 +23,7 @@ const BudgetUpdate = () => {
         setEndDate(endDate);
       } catch (error) {
         console.error('Error fetching budget:', error);
+        setErrorMessage('Error fetching budget. Please try again.');
       }
     };
 
@@ -36,9 +39,13 @@ const BudgetUpdate = () => {
         startDate,
         endDate
       });
+      setSuccessMessage('Budget updated successfully!');
+      setErrorMessage('');
       history.push('/budgets');
     } catch (error) {
       console.error('Error updating budget:', error);
+      setErrorMessage('Error updating budget. Please try again.');
+      setSuccessMessage('');
     }
   };
 
@@ -85,6 +92,8 @@ const BudgetUpdate = () => {
         />
       </div>
       <button type="submit">Update Budget</button>
+      {successMessage && <p>{successMessage}</p>}
+      {errorMessage && <p>{errorMessage}</p>}
     </form>
   );
 };

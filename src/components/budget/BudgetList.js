@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 const BudgetList = () => {
   const [budgets, setBudgets] = useState([]);
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
     const fetchBudgets = async () => {
@@ -12,6 +13,7 @@ const BudgetList = () => {
         setBudgets(response.data);
       } catch (error) {
         console.error('Error fetching budgets:', error);
+        setErrorMessage('Error fetching budgets. Please try again.');
       }
     };
 
@@ -21,6 +23,7 @@ const BudgetList = () => {
   return (
     <div>
       <h2>Budgets</h2>
+      {errorMessage && <p>{errorMessage}</p>}
       <ul>
         {budgets.map((budget) => (
           <li key={budget._id}>
@@ -33,6 +36,7 @@ const BudgetList = () => {
           </li>
         ))}
       </ul>
+      <Link to="/budgets/create">Create New Budget</Link>
     </div>
   );
 };

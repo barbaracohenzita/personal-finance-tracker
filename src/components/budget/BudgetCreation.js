@@ -6,6 +6,8 @@ const BudgetCreation = () => {
   const [amount, setAmount] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,8 +23,12 @@ const BudgetCreation = () => {
       setAmount('');
       setStartDate('');
       setEndDate('');
+      setSuccessMessage('Budget created successfully!');
+      setErrorMessage('');
     } catch (error) {
       console.error('Error creating budget:', error);
+      setErrorMessage('Error creating budget. Please try again.');
+      setSuccessMessage('');
     }
   };
 
@@ -69,6 +75,8 @@ const BudgetCreation = () => {
         />
       </div>
       <button type="submit">Create Budget</button>
+      {successMessage && <p>{successMessage}</p>}
+      {errorMessage && <p>{errorMessage}</p>}
     </form>
   );
 };
