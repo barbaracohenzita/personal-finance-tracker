@@ -29,6 +29,7 @@ const BudgetView = () => {
       <p>Amount: {budget.amount}</p>
       <p>Start Date: {new Date(budget.startDate).toLocaleDateString()}</p>
       <p>End Date: {new Date(budget.endDate).toLocaleDateString()}</p>
+      <p>User ID: {budget.userId}</p>
     </div>
   );
 };

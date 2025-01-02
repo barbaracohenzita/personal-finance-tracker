@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 const BudgetCreation = () => {
   const [budgetName, setBudgetName] = useState('');
@@ -6,9 +7,23 @@ const BudgetCreation = () => {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Add logic to handle form submission and send data to the backend
+    try {
+      await axios.post('/api/budgets', {
+        name: budgetName,
+        amount,
+        startDate,
+        endDate
+      });
+      // Reset form fields after successful submission
+      setBudgetName('');
+      setAmount('');
+      setStartDate('');
+      setEndDate('');
+    } catch (error) {
+      console.error('Error creating budget:', error);
+    }
   };
 
   return (

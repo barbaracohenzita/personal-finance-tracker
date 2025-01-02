@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const BudgetList = () => {
   const [budgets, setBudgets] = useState([]);
@@ -27,6 +28,8 @@ const BudgetList = () => {
             <p>Amount: {budget.amount}</p>
             <p>Start Date: {new Date(budget.startDate).toLocaleDateString()}</p>
             <p>End Date: {new Date(budget.endDate).toLocaleDateString()}</p>
+            <Link to={`/budgets/view/${budget._id}`}>View</Link>
+            <Link to={`/budgets/update/${budget._id}`}>Update</Link>
           </li>
         ))}
       </ul>
