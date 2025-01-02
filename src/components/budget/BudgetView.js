@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 const BudgetView = () => {
   const { id } = useParams();
   const [budget, setBudget] = useState(null);
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
     const fetchBudget = async () => {
@@ -13,11 +14,16 @@ const BudgetView = () => {
         setBudget(response.data);
       } catch (error) {
         console.error('Error fetching budget:', error);
+        setErrorMessage('Error fetching budget. Please try again.');
       }
     };
 
     fetchBudget();
   }, [id]);
+
+  if (errorMessage) {
+    return <div>{errorMessage}</div>;
+  }
 
   if (!budget) {
     return <div>Loading...</div>;

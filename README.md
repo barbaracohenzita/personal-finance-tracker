@@ -26,6 +26,7 @@ The Personal Finance Tracker is a web application that allows users to track the
 - **Input validation and sanitization**: Prevent SQL injection and cross-site scripting (XSS) attacks.
 - **Regular data backups**: Ensure user data is regularly backed up and stored securely.
 - **Monitoring and logging**: Monitor and log access to sensitive data to detect and respond to potential security incidents.
+- **Budget Management**: Create, update, view, and delete budgets.
 
 ## Setup and Running the Project
 
@@ -59,3 +60,9 @@ The Personal Finance Tracker is a web application that allows users to track the
 
 6. **Access the application**:
    Open your browser and navigate to `http://localhost:3000` to access the Personal Finance Tracker.
+
+7. **Budget Management**:
+   - Create a new budget by navigating to `http://localhost:3000/budgets/create`.
+   - View all budgets by navigating to `http://localhost:3000/budgets`.
+   - Update a budget by navigating to `http://localhost:3000/budgets/update/:id`.
+   - View a specific budget by navigating to `http://localhost:3000/budgets/view/:id`.
